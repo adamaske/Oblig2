@@ -1,0 +1,5 @@
+C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Intermediate\Build\Win64\UE4Editor\Development\SpaceGame\Definitions.SpaceGame.h
+C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Source\SpaceGame\MyPlayer.h
+C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Intermediate\Build\Win64\UE4Editor\Inc\SpaceGame\MyPlayer.generated.h
+C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Source\SpaceGame\PlayerBullet.h
+C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Intermediate\Build\Win64\UE4Editor\Inc\SpaceGame\PlayerBullet.generated.h
