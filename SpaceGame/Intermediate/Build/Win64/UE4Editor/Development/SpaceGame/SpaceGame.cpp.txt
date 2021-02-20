@@ -1,2 +1,0 @@
-C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Intermediate\Build\Win64\UE4Editor\Development\SpaceGame\Definitions.SpaceGame.h
-C:\Users\adama\Documents\GitHub\Oblig2\SpaceGame\Source\SpaceGame\SpaceGame.h
