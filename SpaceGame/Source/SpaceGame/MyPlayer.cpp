@@ -24,15 +24,17 @@ AMyPlayer::AMyPlayer()
 void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//Do movement everyFrame
-	DoMovement(DeltaTime);
+	//if CanMove, do movement
+	if (bCanMove) {
+		DoMovement(DeltaTime);
+	}
+	
 }
 
 // Called to bind functionality to input

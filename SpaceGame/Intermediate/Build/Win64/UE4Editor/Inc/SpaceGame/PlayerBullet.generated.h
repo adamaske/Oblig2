@@ -8,14 +8,25 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef SPACEGAME_PlayerBullet_generated_h
 #error "PlayerBullet.generated.h already included, missing '#pragma once' in PlayerBullet.h"
 #endif
 #define SPACEGAME_PlayerBullet_generated_h
 
 #define SpaceGame_Source_SpaceGame_PlayerBullet_h_12_SPARSE_DATA
-#define SpaceGame_Source_SpaceGame_PlayerBullet_h_12_RPC_WRAPPERS
-#define SpaceGame_Source_SpaceGame_PlayerBullet_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define SpaceGame_Source_SpaceGame_PlayerBullet_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnOverlap);
+
+
+#define SpaceGame_Source_SpaceGame_PlayerBullet_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnOverlap);
+
+
 #define SpaceGame_Source_SpaceGame_PlayerBullet_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAPlayerBullet(); \

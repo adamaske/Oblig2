@@ -2,18 +2,20 @@
 
 
 #include "PlayerBullet.h"
-
+#include "Components/SphereComponent.h"
 // Sets default values
 APlayerBullet::APlayerBullet()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	//Set a empty object to root
-	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+	RootComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
 
 	meshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BulletMesh"));
 
 	meshComponent->SetupAttachment(RootComponent);
+
+	Cast<USphereComponent>(RootComponent)->OnComponentBeginOverlap.AddDynamic(this, &APlayerBullet::OnOverlap);
 }
 
 // Called when the game starts or when spawned
@@ -48,4 +50,10 @@ void APlayerBullet::Lifetime(float DeltaTime) {
 	if (timeLived >= allowedLifetime) {
 		this->Destroy();
 	}
+}
+
+void APlayerBullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, 
+	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+
 }

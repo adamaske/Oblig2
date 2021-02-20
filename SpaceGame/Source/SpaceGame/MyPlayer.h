@@ -30,6 +30,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	USceneComponent* bulletSpawnPoint;
 	
+	bool bCanMove{ 1 };
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
