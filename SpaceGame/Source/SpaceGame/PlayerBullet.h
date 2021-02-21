@@ -26,6 +26,8 @@ public:
 
 	float timeLived{0};
 
+	UPROPERTY(EditAnywhere)
+		float damage{ 50 };
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

@@ -3,6 +3,7 @@
 
 #include "PlayerBullet.h"
 #include "Components/SphereComponent.h"
+#include "Enemy.h"
 // Sets default values
 APlayerBullet::APlayerBullet()
 {
@@ -21,6 +22,9 @@ APlayerBullet::APlayerBullet()
 // Called when the game starts or when spawned
 void APlayerBullet::BeginPlay()
 {
+
+
+
 	Super::BeginPlay();
 
 	timeLived = 0;
@@ -55,5 +59,11 @@ void APlayerBullet::Lifetime(float DeltaTime) {
 void APlayerBullet::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, 
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (OtherActor->IsA(AEnemy::StaticClass())) {
+		UE_LOG(LogTemp, Warning, TEXT("HitEnemy"));
 
+		Cast<AEnemy>(OtherActor)->HitByPlayer(damage);
+
+		this->Destroy();
+	}
 }
