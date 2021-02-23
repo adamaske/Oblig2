@@ -78,6 +78,14 @@ void ASpaceGameGameModeBase::MoveEnemies(float DeltaTime) {
 
 	for (int i{0}; i < enemies.Num(); i++)
 	{
+		if (enemies[i]->dead) {
+			enemies[i]->Destroy();
+			enemies.RemoveAt(i);
+		}
+	}
+
+	for (int i{0}; i < enemies.Num(); i++)
+	{
 		//Check if its time to switch
 		
 		if (moveDirection == right) {

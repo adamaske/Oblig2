@@ -34,7 +34,7 @@ void AMyPlayer::Tick(float DeltaTime)
 	if (bCanMove) {
 		DoMovement(DeltaTime);
 	}
-	
+	ShootTimer(DeltaTime);
 }
 
 // Called to bind functionality to input
@@ -69,12 +69,25 @@ void AMyPlayer::MoveForward(float value)
 }
 
 void AMyPlayer::Shoot() {
+	if (!bCanFire) { 
+		return; 
+	}
+
 	UWorld* world = GetWorld();
 	if (world && bulletBlueprint) {
 		/*FVector spawnLocation = bulletSpawnPoint->GetSocketLocation();
 		FRotator spawnRotation = bulletSpawnPoint->GetComponentRotation();*/
 
 		world->SpawnActor<APlayerBullet>(bulletBlueprint, GetActorLocation() + FVector(5,0,0) , GetActorRotation());
+		bCanFire = false;
+		shotTimer = 0;
 	}
 }
 
+void AMyPlayer::ShootTimer(float DeltaTime) {
+	shotTimer += DeltaTime;
+	if (!bCanFire && shotTimer >= fireRate) {
+		bCanFire = true;
+		shotTimer = 0;
+	}
+}

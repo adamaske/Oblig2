@@ -4,22 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Enemy.generated.h"
+#include "PlayerBase.generated.h"
 
 UCLASS()
-class SPACEGAME_API AEnemy : public AActor
+class SPACEGAME_API APlayerBase : public AActor
 {
 	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* meshComponent;
-
+	
 public:	
 	// Sets default values for this actor's properties
-	AEnemy();
+	APlayerBase();
 
-	UPROPERTY(EditAnywhere)
-	float health;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,7 +23,4 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void HitByPlayer(float damage);
-
-	bool dead;
 };

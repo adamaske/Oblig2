@@ -18,7 +18,7 @@ AEnemy::AEnemy()
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	dead = false;
 }
 
 // Called every frame
@@ -34,7 +34,7 @@ void AEnemy::HitByPlayer(float damage) {
 
 	if (health <= 0) {
 		//Die
-		this->Destroy();
+		dead = true;
 	}
 }
 

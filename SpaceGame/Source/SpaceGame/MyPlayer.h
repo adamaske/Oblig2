@@ -29,6 +29,11 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	USceneComponent* bulletSpawnPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Stats")
+		float fireRate{ 0.1f };
+	bool bCanFire{ 1 };
+	float shotTimer{ 0 };
 	
 	bool bCanMove{ 1 };
 protected:
@@ -49,4 +54,6 @@ public:
 	void MoveForward(float);
 
 	void Shoot();
+
+	void ShootTimer(float);
 };
