@@ -9,6 +9,21 @@
 /**
  * 
  */
+USTRUCT(BlueprintType)
+struct FWave
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, Category = "Fields")
+		int rows{0};
+	UPROPERTY(EditAnywhere, Category = "Fields")
+		int colums{ 0 };;
+	UPROPERTY(EditAnywhere, Category = "Fields")
+		float forwardSpeed{ 0 };;
+	UPROPERTY(EditAnywhere, Category = "Fields")
+		float sidewaysSpeed{ 0 };;
+};
+
 UCLASS()
 class SPACEGAME_API ASpaceGameGameModeBase : public AGameModeBase
 {
@@ -22,12 +37,6 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	UPROPERTY(EditAnywhere, Category = "Enemies")
-		int rows{ 5 };
-
-	UPROPERTY(EditAnywhere, Category = "Enemies")
-		int columns{ 5 };
-
-	UPROPERTY(EditAnywhere, Category = "Enemies")
 		float spaceBewteenEnemies{ 200 };
 
 	UPROPERTY(EditAnywhere, Category = "Enemies")
@@ -36,16 +45,24 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Enemies")
 		FRotator startRotation;
 
-	UPROPERTY(EditAnywhere, Category = "Enemies")
-		float sidewaysSpeed{ 200 };
-	UPROPERTY(EditAnywhere, Category = "Enemies")
-		float forwardSpeed{ 100 };
+	//Players base
+	UPROPERTY(EditAnywhere, Category = "PlayerBase")
+	TSubclassOf<class APlayerBase> playerBaseBlueprint;
+
+	class APlayerBase* playerBase;
+
+	UPROPERTY(EditAnywhere, Category = "PlayerBase")
+		FVector playerBaseSpawnPoint;
+
+	UPROPERTY(EditAnywhere, Category = "Enemies", meta = (TitleProperty = "Enemies"))
+		TArray<FWave> waves;
 private:
 	UPROPERTY(EditAnywhere, Category = "Enemies");
 	TSubclassOf<class AEnemy> EnemyBlueprint;
 
 	TArray<class AEnemy*> enemies;
 
+	
 	UPROPERTY(EditAnywhere, Category = "Enemies")
 	float timePerDirection{ 2.f };
 
@@ -54,17 +71,33 @@ private:
 
 	//Start countdown
 	bool bEnemiesCanMove{ 0 };
+
 	UPROPERTY(EditAnywhere, Category = "Enemies")
 		float countdownTIme{ 3 };
+	/*UPROPERTY(EditAnywhere, Category = "Enemies")
+	TArray<class Wave> waves;*/
 	bool bCountingDown{ 1 };
+
 	void SpawnEnemies();
 
 	void MoveEnemies(float); 
 	
 	void Countdown(float);
 
+	void SpawnPlayerBase();
+
+	bool WaveDead();
+
+
+	int currentWave{ 0 };
+
+	void GameOver(bool);
+
+	bool playing{ 1 };
 	enum MoveMode {
 		right, left
 	};
 	MoveMode moveDirection{ right };
 };
+
+

@@ -2,16 +2,24 @@
 
 
 #include "Enemy.h"
-
+#include "Components/SphereComponent.h"
+#include "PlayerBase.h"
 // Sets default values
 AEnemy::AEnemy()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+	
 
 	meshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 
 	RootComponent = meshComponent;
+
+	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
+
+	sphereComponent->SetupAttachment(RootComponent);
+	sphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnOverlap);
+	
 }
 
 // Called when the game starts or when spawned
@@ -28,13 +36,22 @@ void AEnemy::Tick(float DeltaTime)
 
 }
 
-void AEnemy::HitByPlayer(float damage) {
+void AEnemy::HitByPlayer(float value) {
 
-	health -= damage;
+	health -= value;
 
 	if (health <= 0) {
 		//Die
 		dead = true;
 	}
 }
+void AEnemy::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent,
+	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor->IsA(APlayerBase::StaticClass())) {
+		UE_LOG(LogTemp, Warning, TEXT("Hit Player's Base"));
 
+		dead = true;
+		Cast<APlayerBase>(OtherActor)->TakeDamage(damage);
+	}
+}

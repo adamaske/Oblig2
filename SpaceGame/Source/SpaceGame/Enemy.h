@@ -14,12 +14,15 @@ class SPACEGAME_API AEnemy : public AActor
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* meshComponent;
 
+	class USphereComponent* sphereComponent;
 public:	
 	// Sets default values for this actor's properties
 	AEnemy();
 
 	UPROPERTY(EditAnywhere)
-	float health;
+		float health{ 100 };
+	UPROPERTY(EditAnywhere)
+		float damage{ 25 };
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -31,4 +34,9 @@ public:
 	void HitByPlayer(float damage);
 
 	bool dead;
+
+	UFUNCTION()
+		void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+			UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex,
+			bool bFromSweep, const FHitResult& SweepResult);
 };
