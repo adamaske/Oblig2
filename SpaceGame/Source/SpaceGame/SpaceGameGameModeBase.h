@@ -55,7 +55,9 @@ public:
 		FVector playerBaseSpawnPoint;
 
 	UPROPERTY(EditAnywhere, Category = "Enemies", meta = (TitleProperty = "Enemies"))
-		TArray<FWave> waves;
+		TArray<FWave> waves; 
+	UPROPERTY(BlueprintReadWrite)
+		int currentWave{ 0 };
 private:
 	UPROPERTY(EditAnywhere, Category = "Enemies");
 	TSubclassOf<class AEnemy> EnemyBlueprint;
@@ -88,8 +90,7 @@ private:
 
 	bool WaveDead();
 
-
-	int currentWave{ 0 };
+	
 
 	void GameOver(bool);
 

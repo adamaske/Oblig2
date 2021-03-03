@@ -5,6 +5,7 @@
 #include "SpaceGame.h"
 #include "Enemy.h"
 #include "PlayerBase.h"
+#include "Blueprint/UserWidget.h"
 #include "Engine/World.h"
 
 ASpaceGameGameModeBase::ASpaceGameGameModeBase() {
@@ -29,6 +30,7 @@ void ASpaceGameGameModeBase::BeginPlay() {
 	bCountingDown = true;
 	//Sets the game to playing and lets the tick function continue
 	playing = true;
+
 }
 
 void ASpaceGameGameModeBase::Tick(float DeltaTime) {

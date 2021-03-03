@@ -9,17 +9,17 @@ AEnemy::AEnemy()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+
+
 	
-
-	meshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
-
-	RootComponent = meshComponent;
 
 	sphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
 
-	sphereComponent->SetupAttachment(RootComponent);
+	RootComponent = sphereComponent;
 	sphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnOverlap);
 	
+	meshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+	meshComponent->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned

@@ -17,7 +17,7 @@ public:
 	// Sets default values for this actor's properties
 	APlayerBase();
 
-	UPROPERTY(EditAnywhere, Category = "Stats")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Stats")
 	float health;
 
 	bool bDead{ 0 };
