@@ -51,7 +51,6 @@ void ASpaceGameGameModeBase::Tick(float DeltaTime) {
 	}
 	//Checks if the wave is dead, if so go to next wave and spawn enemies
 	if (WaveDead()) {
-		NextWave();
 		SpawnEnemies();
 	}
 }
@@ -148,22 +147,22 @@ bool ASpaceGameGameModeBase::WaveDead()
 {
 	//Checks if it there is any enemy in enemies, if so the size will big larger than 0
 	if (enemies.Num() == 0) {
-		return true;
+		currentWave++;
+		//If the currentWave is larger og the same as the size of waves, the game is over, the player defeated all the waves
+		if (currentWave >= waves.Num()) {
+			//Waves are over
+			GameOver(true);
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	else {
 		return false;
 	}
 }
 
-void ASpaceGameGameModeBase::NextWave()
-{
-	currentWave++;
-	//If the currentWave is larger og the same as the size of waves, the game is over, the player defeated all the waves
-	if (currentWave >= waves.Num()) {
-		//Waves are over
-		GameOver(true);
-	}
-}
 void ASpaceGameGameModeBase::GameOver(bool didPlayerWin)
 {
 	playing = false;
