@@ -65,7 +65,8 @@ void AMyPlayer::MoveRight(float value) {
 
 void AMyPlayer::MoveForward(float value)
 {
-	myVelocity.X = value;
+	//Disabled forward movemnet
+	myVelocity.X = 0;
 }
 
 void AMyPlayer::Shoot() {

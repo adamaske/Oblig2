@@ -17,11 +17,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Fields")
 		int rows{0};
 	UPROPERTY(EditAnywhere, Category = "Fields")
-		int colums{ 0 };;
+		int colums{ 0 };
 	UPROPERTY(EditAnywhere, Category = "Fields")
-		float forwardSpeed{ 0 };;
+		float forwardSpeed{ 0 };
 	UPROPERTY(EditAnywhere, Category = "Fields")
-		float sidewaysSpeed{ 0 };;
+		float sidewaysSpeed{ 0 };
 };
 
 UCLASS()

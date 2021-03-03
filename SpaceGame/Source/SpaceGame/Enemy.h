@@ -12,9 +12,9 @@ class SPACEGAME_API AEnemy : public AActor
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, Category = "Mesh")
-	UStaticMeshComponent* meshComponent;
+	UStaticMeshComponent* mesh;
 	UPROPERTY(EditAnywhere)
-	class USphereComponent* sphereComponent;
+	class USphereComponent* sphere;
 public:	
 	// Sets default values for this actor's properties
 	AEnemy();

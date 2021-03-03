@@ -157,6 +157,7 @@ bool ASpaceGameGameModeBase::WaveDead()
 			return false;
 		}
 		else {
+			timeElapsed = timePerDirection / 2;
 			return true;
 		}
 	}
